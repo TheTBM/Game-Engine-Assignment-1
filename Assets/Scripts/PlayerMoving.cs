@@ -7,7 +7,10 @@ public class PlayerMoving : MonoBehaviour
 {
 	public float speed;
 	public float rotationSpeed;
+	public GameObject player;
 	public Camera camera;
+	Vector3 upVector;
+	Vector3 rightVector;
 	Vector3 direction;
 	Vector3 lookDirection;
 
@@ -15,6 +18,8 @@ public class PlayerMoving : MonoBehaviour
 	void Start ()
 	{
 		direction = new Vector3(0, 0, 0);
+		upVector = new Vector3(0, 1, 0);
+		rightVector = new Vector3(1, 0, 0);
 		ControllerPluginWrapper.Initiate();
 	}
 	
@@ -38,8 +43,9 @@ public class PlayerMoving : MonoBehaviour
 			lookDirection.z = ControllerPluginWrapper.RightStick_Y(0);
 		}
 
-		camera.transform.Translate(direction * speed * Time.deltaTime);
-		camera.transform.Rotate(Vector3.up * lookDirection.x * rotationSpeed);
+		player.transform.Translate(direction * speed * Time.deltaTime);
+		player.transform.Rotate(upVector * lookDirection.x * rotationSpeed);
+		camera.transform.Rotate(rightVector * -lookDirection.z * rotationSpeed);
 
 		ControllerPluginWrapper.RefreshStates();
 	}
