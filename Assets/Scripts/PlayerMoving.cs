@@ -9,6 +9,12 @@ public class PlayerMoving : MonoBehaviour
 	public float rotationSpeed;
 	public GameObject player;
 	public Camera camera;
+	int spawnBox = 0;
+
+	bool swappingButtons;
+
+	Rigidbody rigidbody;
+
 	Vector3 upVector;
 	Vector3 rightVector;
 	Vector3 direction;
@@ -17,10 +23,12 @@ public class PlayerMoving : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		direction = new Vector3(0, 0, 0);
-		upVector = new Vector3(0, 1, 0);
-		rightVector = new Vector3(1, 0, 0);
+		direction.Set(0, 0, 0);
+		upVector.Set(0, 1, 0);
+		rightVector.Set(1, 0, 0);
 		ControllerPluginWrapper.Initiate();
+		rigidbody = player.GetComponent<Rigidbody>();
+		swappingButtons buttonsFalse;
 	}
 	
 	// Update is called once per frame
@@ -28,19 +36,28 @@ public class PlayerMoving : MonoBehaviour
 	{
 		ControllerPluginWrapper.UpdateControllers();
 
-		direction = new Vector3(0, 0, 0);
-		lookDirection = new Vector3(0, 0, 0);
+		direction.Set(0, 0, 0);
+		lookDirection.Set(0, 0, 0);
 
 		if (!ControllerPluginWrapper.LStick_InDeadZone(0))
 		{
 			direction.x = ControllerPluginWrapper.LeftStick_X(0);
 			direction.z = ControllerPluginWrapper.LeftStick_Y(0);
+			Debug.Log(direction);
 		}
 
 		if (!ControllerPluginWrapper.RStick_InDeadZone(0))
 		{
 			lookDirection.x = ControllerPluginWrapper.RightStick_X(0);
 			lookDirection.z = ControllerPluginWrapper.RightStick_Y(0);
+		}
+
+		if (ControllerPluginWrapper.GetButtonPressed(0, spawnBox))
+		{
+			if (rigidbody.velocity.y < 0.01f && rigidbody.velocity.y > -0.01f) 
+			{
+				rigidbody.AddForce(new Vector3(0, 17.5f, 0), ForceMode.Impulse);
+			}
 		}
 
 		player.transform.Translate(direction * speed * Time.deltaTime);
