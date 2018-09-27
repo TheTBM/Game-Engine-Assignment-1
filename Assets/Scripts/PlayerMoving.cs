@@ -9,9 +9,6 @@ public class PlayerMoving : MonoBehaviour
 	public float rotationSpeed;
 	public GameObject player;
 	public Camera camera;
-	int spawnBox = 0;
-
-	bool swappingButtons;
 
 	Rigidbody rigidbody;
 
@@ -28,7 +25,6 @@ public class PlayerMoving : MonoBehaviour
 		rightVector.Set(1, 0, 0);
 		ControllerPluginWrapper.Initiate();
 		rigidbody = player.GetComponent<Rigidbody>();
-		swappingButtons buttonsFalse;
 	}
 	
 	// Update is called once per frame
@@ -52,7 +48,7 @@ public class PlayerMoving : MonoBehaviour
 			lookDirection.z = ControllerPluginWrapper.RightStick_Y(0);
 		}
 
-		if (ControllerPluginWrapper.GetButtonPressed(0, spawnBox))
+		if (ControllerPluginWrapper.GetButtonPressed(0, 0))
 		{
 			if (rigidbody.velocity.y < 0.01f && rigidbody.velocity.y > -0.01f) 
 			{
