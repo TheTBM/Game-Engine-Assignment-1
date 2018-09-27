@@ -78,7 +78,7 @@ namespace CommandPattern
 
 		private void spawnTree(GameObject gameObject, GameObject tree, Command command)
 		{
-			copy = GameObject.Instantiate(tree, gameObject.transform.position + gameObject.transform.forward * 2.0f, gameObject.transform.rotation) as GameObject;
+			copy = GameObject.Instantiate(tree, (gameObject.transform.position + gameObject.transform.forward * 2.0f) + new Vector3(0, -1, 0), gameObject.transform.rotation) as GameObject;
 		}
 	}
 
@@ -99,7 +99,7 @@ namespace CommandPattern
 
 		private void spawnCrystals(GameObject gameObject, GameObject crystal, Command command)
 		{
-			copy = GameObject.Instantiate(crystal, gameObject.transform.position + gameObject.transform.forward * 2.0f, gameObject.transform.rotation) as GameObject;
+			copy = GameObject.Instantiate(crystal, (gameObject.transform.position + gameObject.transform.forward * 2.0f) + new Vector3(0, -0.75f, 0), gameObject.transform.rotation) as GameObject;
 		}
 	}
 
@@ -120,7 +120,7 @@ namespace CommandPattern
 
 		private void spawnTower(GameObject gameObject, GameObject tower, Command command)
 		{
-			copy = GameObject.Instantiate(tower, gameObject.transform.position + gameObject.transform.forward * 2.0f, gameObject.transform.rotation) as GameObject;
+			copy = GameObject.Instantiate(tower, (gameObject.transform.position + gameObject.transform.forward * 2.0f) + new Vector3(0, -1, 0), gameObject.transform.rotation) as GameObject;
 		}
 	}
 }
