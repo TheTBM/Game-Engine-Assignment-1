@@ -371,7 +371,6 @@ GameObject:
   - component: {fileID: 1296246180}
   - component: {fileID: 1296246179}
   - component: {fileID: 1296246182}
-  - component: {fileID: 1296246184}
   - component: {fileID: 1296246183}
   - component: {fileID: 1296246185}
   m_Layer: 0
@@ -480,22 +479,6 @@ MonoBehaviour:
   rotationSpeed: 5
   player: {fileID: 1296246177}
   camera: {fileID: 534669904}
---- !u!114 &1296246184
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1296246177}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c33428f021ab3a34ca262feb347f7755, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 1296246177}
-  Box: {fileID: 100002, guid: 0cd897a0ab6277d409abe2742f89af0e, type: 3}
-  Tree: {fileID: 100002, guid: ca07e38ad815de84daef3ccf09b41464, type: 3}
-  Crystals: {fileID: 100000, guid: 17d8a11dfaada4a4eb67dc5079602e25, type: 3}
-  Tower: {fileID: 100002, guid: 7cbb2cc65af89c146bf8a659cfbe680d, type: 3}
 --- !u!114 &1296246185
 MonoBehaviour:
   m_ObjectHideFlags: 0

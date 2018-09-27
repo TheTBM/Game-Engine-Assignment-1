@@ -28,6 +28,7 @@ namespace ControllerInputs
 
 	*/
 
+		//external functions for controller
 	public class ControllerPluginWrapper : MonoBehaviour
 	{
 		const string DLL_NAME = "ControllerPlugin";
