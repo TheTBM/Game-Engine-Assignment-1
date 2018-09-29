@@ -18,9 +18,14 @@ namespace CommandPattern
 		public abstract void Execute(GameObject gameObject, Command command);
 
 		//function meant to be overwritten, can be executed
-		public virtual void Undo(GameObject gameObject)
+		public virtual void Undo(GameObject gameObject, Command command)
 		{
 			return;
+		}
+
+		public virtual string getCommand()
+		{
+			return "Command";
 		}
 	}
 
@@ -35,10 +40,10 @@ namespace CommandPattern
 		}
 
 		//take base class and overwrite function
-		public override void Undo(GameObject gameObject)
+		public override void Undo(GameObject gameObject, Command command)
 		{
 			//run base class Undo
-			base.Undo(gameObject);
+			base.Undo(gameObject, command);
 		}
 
 		private void jump(GameObject gameObject, Command command)
@@ -51,6 +56,11 @@ namespace CommandPattern
 				rigidbody.AddForce(new Vector3(0, 17.5f, 0), ForceMode.Impulse);
 			}
 		}
+
+		public override string getCommand()
+		{
+			return "Jump";
+		}
 	}
 
 	//child class of namespace commandPattern
@@ -59,7 +69,7 @@ namespace CommandPattern
 		//object to be instantiated later
 		GameObject copy;
 		GameObject cube;
-		List<GameObject> spawns = new List<GameObject>();
+		Stack<GameObject> spawns = new Stack<GameObject>();
 
 		//take base class and overwrite function
 		public override void Execute(GameObject player, Command command)
@@ -69,10 +79,10 @@ namespace CommandPattern
 		}
 
 		//take base class and overwrite function
-		public override void Undo(GameObject gameObject)
+		public override void Undo(GameObject gameObject, Command command)
 		{
-			//run base class Undo
-			base.Undo(gameObject);
+			GameObject die = spawns.Pop();
+			GameObject.Destroy(die);
 		}
 
 		//instantiate object
@@ -80,6 +90,12 @@ namespace CommandPattern
 		{
 			cube = GameObject.FindGameObjectWithTag("Cube");
 			copy = GameObject.Instantiate(cube, gameObject.transform.position + gameObject.transform.forward * 2.0f, gameObject.transform.rotation) as GameObject;
+			spawns.Push(copy);
+		}
+
+		public override string getCommand()
+		{
+			return "SpawnCube";
 		}
 	}
 
@@ -88,7 +104,7 @@ namespace CommandPattern
 		//object to be instantiated later
 		GameObject copy;
 		GameObject tree;
-		List<GameObject> spawns = new List<GameObject>();
+		Stack<GameObject> spawns = new Stack<GameObject>();
 
 		//take base class and overwrite function
 		public override void Execute(GameObject gameObject, Command command)
@@ -99,10 +115,10 @@ namespace CommandPattern
 
 
 		//take base class and overwrite function
-		public override void Undo(GameObject gameObject)
+		public override void Undo(GameObject gameObject, Command command)
 		{
-			//run base class undo 
-			base.Undo(gameObject);
+			GameObject die = spawns.Pop();
+			GameObject.Destroy(die);
 		}
 
 		//instantiate object
@@ -110,6 +126,12 @@ namespace CommandPattern
 		{
 			tree = GameObject.FindGameObjectWithTag("Tree");
 			copy = GameObject.Instantiate(tree, (gameObject.transform.position + gameObject.transform.forward * 2.0f) + new Vector3(0, -1, 0), gameObject.transform.rotation) as GameObject;
+			spawns.Push(copy);
+		}
+
+		public override string getCommand()
+		{
+			return "SpawnTree";
 		}
 	}
 
@@ -118,7 +140,7 @@ namespace CommandPattern
 		//object to be instantiated later
 		GameObject copy;
 		GameObject crystals;
-		List<GameObject> spawns = new List<GameObject>();
+		Stack<GameObject> spawns = new Stack<GameObject>();
 
 		//take base class and overwrite function
 		public override void Execute(GameObject gameObject, Command command)
@@ -128,10 +150,10 @@ namespace CommandPattern
 		}
 
 		//take base class and overwrite function
-		public override void Undo(GameObject gameObject)
+		public override void Undo(GameObject gameObject, Command command)
 		{
-			//run base class undo
-			base.Undo(gameObject);
+			GameObject die = spawns.Pop();
+			GameObject.Destroy(die);
 		}
 
 		//instantiate object
@@ -139,6 +161,12 @@ namespace CommandPattern
 		{
 			crystals = GameObject.FindGameObjectWithTag("Crystals");
 			copy = GameObject.Instantiate(crystals, (gameObject.transform.position + gameObject.transform.forward * 2.0f) + new Vector3(0, -0.75f, 0), gameObject.transform.rotation) as GameObject;
+			spawns.Push(copy);
+		}
+
+		public override string getCommand()
+		{
+			return "SpawnCrystals";
 		}
 	}
 
@@ -147,7 +175,7 @@ namespace CommandPattern
 		//object to be instantiated later
 		GameObject copy;
 		GameObject tower;
-		List<GameObject> spawns = new List<GameObject>();
+		Stack<GameObject> spawns = new Stack<GameObject>();
 
 		//take base class and overwrite function
 		public override void Execute(GameObject gameObject, Command command)
@@ -158,10 +186,10 @@ namespace CommandPattern
 
 
 		//take base class and overwrite function
-		public override void Undo(GameObject gameObject)
+		public override void Undo(GameObject gameObject, Command command)
 		{
-			//run base class undo
-			base.Undo(gameObject);
+			GameObject die = spawns.Pop();
+			GameObject.Destroy(die);
 		}
 
 		//instantiate object 
@@ -169,6 +197,12 @@ namespace CommandPattern
 		{
 			tower = GameObject.FindGameObjectWithTag("Tower");
 			copy = GameObject.Instantiate(tower, (gameObject.transform.position + gameObject.transform.forward * 2.0f) + new Vector3(0, -1, 0), gameObject.transform.rotation) as GameObject;
+			spawns.Push(copy);
+		}
+
+		public override string getCommand()
+		{
+			return "SpawnTower";
 		}
 	}
 
@@ -176,12 +210,17 @@ namespace CommandPattern
 	{
 		public override void Execute(GameObject gameObject, Command command)
 		{
+			command.Undo(gameObject, command);
+		}
+
+		public override void Undo(GameObject gameObject, Command command)
+		{
 			return;
 		}
 
-		public override void Undo(GameObject gameObject)
+		public override string getCommand()
 		{
-			base.Undo(gameObject);
+			return "UndoButton";
 		}
 	}
 
@@ -192,9 +231,14 @@ namespace CommandPattern
 			return;
 		}
 
-		public override void Undo(GameObject gameObject)
+		public override void Undo(GameObject gameObject, Command command)
 		{
-			base.Undo(gameObject);
+			base.Undo(gameObject, command);
+		}
+
+		public override string getCommand()
+		{
+			return "DoNothing";
 		}
 	}
 }

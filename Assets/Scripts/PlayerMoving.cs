@@ -53,7 +53,6 @@ public class PlayerMoving : MonoBehaviour
 		{
 			direction.x = ControllerPluginWrapper.LeftStick_X(0);
 			direction.z = ControllerPluginWrapper.LeftStick_Y(0);
-			Debug.Log(direction);
 		}
 
 		if (!ControllerPluginWrapper.RStick_InDeadZone(0))
