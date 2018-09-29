@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
+using CommandPattern;
 
 //I used the following website to help write this namespace
 //https://www.habrador.com/tutorials/programming-patterns/1-command-pattern/
@@ -13,12 +15,12 @@ namespace CommandPattern
 	public abstract class Command
 	{
 		//public function meant to be inherited from
-		public abstract void Execute(GameObject gameObject, GameObject other, Command command);
+		public abstract void Execute(GameObject gameObject, Command command);
 
 		//function meant to be overwritten, can be executed
 		public virtual void Undo(GameObject gameObject)
 		{
-
+			return;
 		}
 	}
 
@@ -26,10 +28,10 @@ namespace CommandPattern
 	public class Jump : Command
 	{
 		//take base class and overwrite function
-		public override void Execute(GameObject gameObject, GameObject other, Command command)
+		public override void Execute(GameObject gameObject, Command command)
 		{
 			//inside execute, call jump
-			jump(gameObject, other, command);
+			jump(gameObject, command);
 		}
 
 		//take base class and overwrite function
@@ -39,7 +41,7 @@ namespace CommandPattern
 			base.Undo(gameObject);
 		}
 
-		private void jump(GameObject gameObject, GameObject other, Command command)
+		private void jump(GameObject gameObject, Command command)
 		{
 			//take the physics component and jump
 			Rigidbody rigidbody = gameObject.GetComponent<Rigidbody>();
@@ -56,12 +58,14 @@ namespace CommandPattern
 	{
 		//object to be instantiated later
 		GameObject copy;
+		GameObject cube;
+		List<GameObject> spawns = new List<GameObject>();
 
 		//take base class and overwrite function
-		public override void Execute(GameObject player, GameObject cube, Command command)
+		public override void Execute(GameObject player, Command command)
 		{
 			//passing arguements
-			spawnCube(player, cube,  command);
+			spawnCube(player, command);
 		}
 
 		//take base class and overwrite function
@@ -72,8 +76,9 @@ namespace CommandPattern
 		}
 
 		//instantiate object
-		private void spawnCube(GameObject gameObject, GameObject cube,  Command command)
+		private void spawnCube(GameObject gameObject, Command command)
 		{
+			cube = GameObject.FindGameObjectWithTag("Cube");
 			copy = GameObject.Instantiate(cube, gameObject.transform.position + gameObject.transform.forward * 2.0f, gameObject.transform.rotation) as GameObject;
 		}
 	}
@@ -82,12 +87,14 @@ namespace CommandPattern
 	{
 		//object to be instantiated later
 		GameObject copy;
+		GameObject tree;
+		List<GameObject> spawns = new List<GameObject>();
 
 		//take base class and overwrite function
-		public override void Execute(GameObject gameObject, GameObject tree, Command command)
+		public override void Execute(GameObject gameObject, Command command)
 		{
 			//passing arguements
-			spawnTree(gameObject, tree, command);
+			spawnTree(gameObject, command);
 		}
 
 
@@ -99,8 +106,9 @@ namespace CommandPattern
 		}
 
 		//instantiate object
-		private void spawnTree(GameObject gameObject, GameObject tree, Command command)
+		private void spawnTree(GameObject gameObject, Command command)
 		{
+			tree = GameObject.FindGameObjectWithTag("Tree");
 			copy = GameObject.Instantiate(tree, (gameObject.transform.position + gameObject.transform.forward * 2.0f) + new Vector3(0, -1, 0), gameObject.transform.rotation) as GameObject;
 		}
 	}
@@ -109,12 +117,14 @@ namespace CommandPattern
 	{
 		//object to be instantiated later
 		GameObject copy;
+		GameObject crystals;
+		List<GameObject> spawns = new List<GameObject>();
 
 		//take base class and overwrite function
-		public override void Execute(GameObject gameObject, GameObject crystal, Command command)
+		public override void Execute(GameObject gameObject, Command command)
 		{
 			//passing arguements
-			spawnCrystals(gameObject, crystal, command);
+			spawnCrystals(gameObject, command);
 		}
 
 		//take base class and overwrite function
@@ -125,9 +135,10 @@ namespace CommandPattern
 		}
 
 		//instantiate object
-		private void spawnCrystals(GameObject gameObject, GameObject crystal, Command command)
+		private void spawnCrystals(GameObject gameObject, Command command)
 		{
-			copy = GameObject.Instantiate(crystal, (gameObject.transform.position + gameObject.transform.forward * 2.0f) + new Vector3(0, -0.75f, 0), gameObject.transform.rotation) as GameObject;
+			crystals = GameObject.FindGameObjectWithTag("Crystals");
+			copy = GameObject.Instantiate(crystals, (gameObject.transform.position + gameObject.transform.forward * 2.0f) + new Vector3(0, -0.75f, 0), gameObject.transform.rotation) as GameObject;
 		}
 	}
 
@@ -135,12 +146,14 @@ namespace CommandPattern
 	{
 		//object to be instantiated later
 		GameObject copy;
+		GameObject tower;
+		List<GameObject> spawns = new List<GameObject>();
 
 		//take base class and overwrite function
-		public override void Execute(GameObject gameObject, GameObject tower, Command command)
+		public override void Execute(GameObject gameObject, Command command)
 		{
 			//passing arguements
-			spawnTower(gameObject, tower, command);
+			spawnTower(gameObject, command);
 		}
 
 
@@ -152,9 +165,36 @@ namespace CommandPattern
 		}
 
 		//instantiate object 
-		private void spawnTower(GameObject gameObject, GameObject tower, Command command)
+		private void spawnTower(GameObject gameObject, Command command)
 		{
+			tower = GameObject.FindGameObjectWithTag("Tower");
 			copy = GameObject.Instantiate(tower, (gameObject.transform.position + gameObject.transform.forward * 2.0f) + new Vector3(0, -1, 0), gameObject.transform.rotation) as GameObject;
+		}
+	}
+
+	public class UndoButton : Command
+	{
+		public override void Execute(GameObject gameObject, Command command)
+		{
+			return;
+		}
+
+		public override void Undo(GameObject gameObject)
+		{
+			base.Undo(gameObject);
+		}
+	}
+
+	public class DoNothing : Command
+	{
+		public override void Execute(GameObject gameObject, Command command)
+		{
+			return;
+		}
+
+		public override void Undo(GameObject gameObject)
+		{
+			base.Undo(gameObject);
 		}
 	}
 }
