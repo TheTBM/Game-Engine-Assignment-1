@@ -224,6 +224,24 @@ namespace CommandPattern
 		}
 	}
 
+	public class RemapButton : Command
+	{
+		public override void Execute(GameObject gameObject, Command command)
+		{
+			return;
+		}
+
+		public override void Undo(GameObject gameObject, Command command)
+		{
+			base.Undo(gameObject, command);
+		}
+
+		public override string getCommand()
+		{
+			return "RemapButton";
+		}
+	}
+
 	public class DoNothing : Command
 	{
 		public override void Execute(GameObject gameObject, Command command)
@@ -239,6 +257,24 @@ namespace CommandPattern
 		public override string getCommand()
 		{
 			return "DoNothing";
+		}
+	}
+
+	public class Blank : Command
+	{
+		public override void Execute(GameObject gameObject, Command command)
+		{
+			return;
+		}
+
+		public override void Undo(GameObject gameObject, Command command)
+		{
+			base.Undo(gameObject, command);
+		}
+
+		public override string getCommand()
+		{
+			return base.getCommand();
 		}
 	}
 }
