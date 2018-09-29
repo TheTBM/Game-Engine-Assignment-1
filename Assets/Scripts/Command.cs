@@ -205,14 +205,19 @@ namespace CommandPattern
 			return "SpawnTower";
 		}
 	}
-
+	
+	//used for removing a command from buttons press
 	public class UndoButton : Command
 	{
+		//take base class and overwrite function
 		public override void Execute(GameObject gameObject, Command command)
 		{
+			//passing arguements
 			command.Undo(gameObject, command);
 		}
 
+
+		//take base class and overwrite function
 		public override void Undo(GameObject gameObject, Command command)
 		{
 			return;
@@ -224,15 +229,19 @@ namespace CommandPattern
 		}
 	}
 
+	//used for remapping a command to a button press
 	public class RemapButton : Command
 	{
+		//take base class and overwrite function
 		public override void Execute(GameObject gameObject, Command command)
 		{
 			return;
 		}
 
+		//take base class and overwrite function
 		public override void Undo(GameObject gameObject, Command command)
 		{
+			//passing arguements
 			base.Undo(gameObject, command);
 		}
 
@@ -242,15 +251,19 @@ namespace CommandPattern
 		}
 	}
 
+	//used if the button press has no command
 	public class DoNothing : Command
 	{
+		//take base class and overwrite function
 		public override void Execute(GameObject gameObject, Command command)
 		{
 			return;
 		}
 
+		//take base class and overwrite function
 		public override void Undo(GameObject gameObject, Command command)
 		{
+			//passing arguements
 			base.Undo(gameObject, command);
 		}
 
@@ -260,15 +273,19 @@ namespace CommandPattern
 		}
 	}
 
+	//used if no button was pressed
 	public class Blank : Command
 	{
+		//take base class and overwrite function
 		public override void Execute(GameObject gameObject, Command command)
 		{
 			return;
 		}
 
+		//take base class and overwrite function
 		public override void Undo(GameObject gameObject, Command command)
 		{
+			//passing arguements 
 			base.Undo(gameObject, command);
 		}
 

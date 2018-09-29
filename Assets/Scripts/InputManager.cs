@@ -78,7 +78,7 @@ namespace CommandPattern
 
 		public void HandleInputs()
 		{
-			//if x button is pressed, make player jump
+			//perform action linked to x button
 			if (ControllerPluginWrapper.GetButtonDown(0, 0))
 			{
 				if ((XButton.getCommand() != "DoNothing") && (XButton.getCommand() != "Jump") && (XButton.getCommand() != "UndoButton") && (XButton.getCommand() != "RemapButton"))
@@ -100,6 +100,7 @@ namespace CommandPattern
 				}
 			}
 
+			//perform action linked to circle button
 			else if (ControllerPluginWrapper.GetButtonDown(0, 1))
 			{
 				if ((CircleButton.getCommand() != "DoNothing") && (CircleButton.getCommand() != "Jump") && (CircleButton.getCommand() != "UndoButton") && (CircleButton.getCommand() != "RemapButton"))
@@ -121,6 +122,7 @@ namespace CommandPattern
 				}
 			}
 
+			//perform action linked to square button
 			else if (ControllerPluginWrapper.GetButtonDown(0, 2))
 			{
 				if ((SquareButton.getCommand() != "DoNothing") && (SquareButton.getCommand() != "Jump") && (SquareButton.getCommand() != "UndoButton") && (SquareButton.getCommand() != "RemapButton"))
@@ -142,6 +144,7 @@ namespace CommandPattern
 				}
 			}
 
+			//perform action linked to triangle button
 			else if (ControllerPluginWrapper.GetButtonDown(0, 3))
 			{
 				if ((TriangleButton.getCommand() != "DoNothing") && (TriangleButton.getCommand() != "Jump") && (TriangleButton.getCommand() != "UndoButton") && (TriangleButton.getCommand() != "RemapButton"))
@@ -163,6 +166,7 @@ namespace CommandPattern
 				}
 			}
 
+			//perform action linked to up on directional pad
 			else if (ControllerPluginWrapper.GetButtonDown(0, 4))
 			{
 				if ((DPadUp.getCommand() != "DoNothing") && (DPadUp.getCommand() != "Jump") && (DPadUp.getCommand() != "UndoButton") && (DPadUp.getCommand() != "RemapButton"))
@@ -184,6 +188,7 @@ namespace CommandPattern
 				}
 			}
 
+			//perform action linked to down on directional pad
 			else if (ControllerPluginWrapper.GetButtonDown(0, 5))
 			{
 				if ((DPadDown.getCommand() != "DoNothing") && (DPadDown.getCommand() != "Jump") && (DPadDown.getCommand() != "UndoButton") && (DPadDown.getCommand() != "RemapButton"))
@@ -205,6 +210,7 @@ namespace CommandPattern
 				}
 			}
 
+			//perform action linked to left on directional pad
 			else if (ControllerPluginWrapper.GetButtonDown(0, 6))
 			{
 				if ((DPadLeft.getCommand() != "DoNothing") && (DPadLeft.getCommand() != "Jump") && (DPadLeft.getCommand() != "UndoButton") && (DPadLeft.getCommand() != "RemapButton"))
@@ -226,6 +232,7 @@ namespace CommandPattern
 				}
 			}
 
+			//perform action linked to right on directional pad
 			else if (ControllerPluginWrapper.GetButtonDown(0, 7))
 			{
 				if ((DPadRight.getCommand() != "DoNothing") && (DPadRight.getCommand() != "Jump") && (DPadRight.getCommand() != "UndoButton") && (DPadRight.getCommand() != "RemapButton"))
@@ -247,7 +254,7 @@ namespace CommandPattern
 				}
 			}
 
-			//else if left bumper is pressed spawn tree
+			//perform action linked to left bumper
 			else if (ControllerPluginWrapper.GetButtonDown(0, 8))
 			{
 				if ((L1.getCommand() != "DoNothing") && (L1.getCommand() != "Jump") && (L1.getCommand() != "UndoButton") && (L1.getCommand() != "RemapButton"))
@@ -269,7 +276,7 @@ namespace CommandPattern
 				}
 			}
 
-			//else if right bumper is pressed, spawn tree
+			  //perform action linked to right bumper
 			else if (ControllerPluginWrapper.GetButtonDown(0, 9))
 			{
 				if ((R1.getCommand() != "DoNothing") && (R1.getCommand() != "Jump") && (R1.getCommand() != "UndoButton") && (R1.getCommand() != "RemapButton"))
@@ -291,6 +298,7 @@ namespace CommandPattern
 				}
 			}
 
+			//perform action linked to left stick pressed 
 			else if (ControllerPluginWrapper.GetButtonDown(0, 10))
 			{
 				if ((LStickPress.getCommand() != "DoNothing") && (LStickPress.getCommand() != "Jump") && (LStickPress.getCommand() != "UndoButton") && (LStickPress.getCommand() != "RemapButton"))
@@ -312,6 +320,7 @@ namespace CommandPattern
 				}
 			}
 
+			//perform action linked to right stick pressed 
 			else if (ControllerPluginWrapper.GetButtonDown(0, 11))
 			{
 				if ((RStickPress.getCommand() != "DoNothing") && (RStickPress.getCommand() != "Jump") && (RStickPress.getCommand() != "UndoButton") && (RStickPress.getCommand() != "RemapButton"))
@@ -333,6 +342,7 @@ namespace CommandPattern
 				}
 			}
 
+			//perform action linked to start button
 			else if (ControllerPluginWrapper.GetButtonDown(0, 12))
 			{
 				if ((Pause.getCommand() != "DoNothing") && (Pause.getCommand() != "Jump") && (Pause.getCommand() != "UndoButton") && (Pause.getCommand() != "RemapButton"))
@@ -354,6 +364,7 @@ namespace CommandPattern
 				}
 			}
 
+			//perform action linked to back button
 			else if (ControllerPluginWrapper.GetButtonDown(0, 13))
 			{
 				if ((Select.getCommand() != "DoNothing") && (Select.getCommand() != "Jump") && (Select.getCommand() != "UndoButton") && (Select.getCommand() != "RemapButton"))
@@ -375,7 +386,7 @@ namespace CommandPattern
 				}
 			}
 
-			//else if right trigger is pressed spawn tower
+			//perform action linked to right trigger
 			else if (ControllerPluginWrapper.RightTrigger(0) > 0.1f)
 			{
 				if ((RightTrigger.getCommand() != "DoNothing") && (RightTrigger.getCommand() != "Jump") && (RightTrigger.getCommand() != "UndoButton") && (RightTrigger.getCommand() != "RemapButton"))
@@ -397,7 +408,7 @@ namespace CommandPattern
 				}
 			}
 
-			//else if left trigger is pressed spawn crystals
+			//perform action linked to left trigger
 			else if (ControllerPluginWrapper.LeftTrigger(0) > 0.1f)
 			{
 				if ((LeftTrigger.getCommand() != "DoNothing") && (LeftTrigger.getCommand() != "Jump") && (LeftTrigger.getCommand() != "UndoButton") && (LeftTrigger.getCommand() != "RemapButton"))
@@ -420,6 +431,7 @@ namespace CommandPattern
 			}
 		}
 
+		//resets all button mapping
 		private void ResetAllButtons()
 		{
 			XButton = new DoNothing();
@@ -440,6 +452,7 @@ namespace CommandPattern
 			LeftTrigger = new DoNothing();
 		}
 
+		//gets button pressed to change control commands
 		private void RemapButtons()
 		{
 			if (getNextButtonPress() == XButton)
@@ -513,6 +526,7 @@ namespace CommandPattern
 			}
 		}
 
+		//gives last button pressed new command
 		private void GiveCommand(ref Command command)
 		{
 			switch (buttonBeingRemapped)
@@ -548,6 +562,7 @@ namespace CommandPattern
 			}
 		}
 
+		//takes in the last button pressed 
 		public Command getNextButtonPress()
 		{
 			if (ControllerPluginWrapper.GetButtonDown(0, 0))
