@@ -88,7 +88,7 @@ namespace CommandPattern
 		//instantiate object
 		private void spawnCube(GameObject gameObject, Command command)
 		{
-			cube = GameObject.FindGameObjectWithTag("Cube");
+			cube = GameObject.FindGameObjectWithTag("Empty");
 			copy = GameObject.Instantiate(cube, gameObject.transform.position + gameObject.transform.forward * 2.0f, gameObject.transform.rotation) as GameObject;
 			copy.GetComponent<MeshFilter>().sharedMesh = gameObject.GetComponent<MeshCopier>().circleTreeMesh;
 			spawns.Push(copy);
@@ -125,7 +125,7 @@ namespace CommandPattern
 		//instantiate object
 		private void spawnTree(GameObject gameObject, Command command)
 		{
-			tree = GameObject.FindGameObjectWithTag("Tree");
+			tree = GameObject.FindGameObjectWithTag("Empty");
 			copy = GameObject.Instantiate(tree, (gameObject.transform.position + gameObject.transform.forward * 2.0f) + new Vector3(0, -1, 0), gameObject.transform.rotation) as GameObject;
 			copy.GetComponent<MeshFilter>().sharedMesh = gameObject.GetComponent<MeshCopier>().treeMesh;
 
@@ -162,7 +162,7 @@ namespace CommandPattern
 		//instantiate object
 		private void spawnCrystals(GameObject gameObject, Command command)
 		{
-			crystals = GameObject.FindGameObjectWithTag("Crystals");
+			crystals = GameObject.FindGameObjectWithTag("Empty");
 			copy = GameObject.Instantiate(crystals, (gameObject.transform.position + gameObject.transform.forward * 2.0f) + new Vector3(0, -0.75f, 0), gameObject.transform.rotation) as GameObject;
 			copy.GetComponent<MeshFilter>().sharedMesh = gameObject.GetComponent<MeshCopier>().crystalsMesh;
 			spawns.Push(copy);
@@ -199,7 +199,7 @@ namespace CommandPattern
 		//instantiate object 
 		private void spawnTower(GameObject gameObject, Command command)
 		{
-			tower = GameObject.FindGameObjectWithTag("Tower");
+			tower = GameObject.FindGameObjectWithTag("Empty");
 			copy = GameObject.Instantiate(tower, (gameObject.transform.position + gameObject.transform.forward * 2.0f) + new Vector3(0, -1, 0), gameObject.transform.rotation) as GameObject;
 			copy.GetComponent<MeshFilter>().sharedMesh = gameObject.GetComponent<MeshCopier>().towerMesh;
 			spawns.Push(copy);
