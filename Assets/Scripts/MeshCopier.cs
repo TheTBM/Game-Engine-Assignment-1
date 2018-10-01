@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class MeshCopier : MonoBehaviour
 {
+	//creating gameObjects
 	public GameObject circleTree;
 	public GameObject tree;
 	public GameObject crystals;
 	public GameObject tower;
 
+	//creating meshes
 	public Mesh circleTreeMesh;
 	public Mesh treeMesh;
 	public Mesh crystalsMesh;
@@ -17,6 +19,7 @@ public class MeshCopier : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
+		//sharing mesh between all game objects
 		circleTreeMesh = circleTree.GetComponent<MeshFilter>().sharedMesh;
 		treeMesh = tree.GetComponent<MeshFilter>().sharedMesh;
 		crystalsMesh = crystals.GetComponent<MeshFilter>().sharedMesh;
