@@ -90,6 +90,7 @@ namespace CommandPattern
 		{
 			cube = GameObject.FindGameObjectWithTag("Cube");
 			copy = GameObject.Instantiate(cube, gameObject.transform.position + gameObject.transform.forward * 2.0f, gameObject.transform.rotation) as GameObject;
+			copy.GetComponent<MeshFilter>().sharedMesh = gameObject.GetComponent<MeshCopier>().circleTreeMesh;
 			spawns.Push(copy);
 		}
 
@@ -126,6 +127,8 @@ namespace CommandPattern
 		{
 			tree = GameObject.FindGameObjectWithTag("Tree");
 			copy = GameObject.Instantiate(tree, (gameObject.transform.position + gameObject.transform.forward * 2.0f) + new Vector3(0, -1, 0), gameObject.transform.rotation) as GameObject;
+			copy.GetComponent<MeshFilter>().sharedMesh = gameObject.GetComponent<MeshCopier>().treeMesh;
+
 			spawns.Push(copy);
 		}
 
@@ -161,6 +164,7 @@ namespace CommandPattern
 		{
 			crystals = GameObject.FindGameObjectWithTag("Crystals");
 			copy = GameObject.Instantiate(crystals, (gameObject.transform.position + gameObject.transform.forward * 2.0f) + new Vector3(0, -0.75f, 0), gameObject.transform.rotation) as GameObject;
+			copy.GetComponent<MeshFilter>().sharedMesh = gameObject.GetComponent<MeshCopier>().crystalsMesh;
 			spawns.Push(copy);
 		}
 
@@ -197,6 +201,7 @@ namespace CommandPattern
 		{
 			tower = GameObject.FindGameObjectWithTag("Tower");
 			copy = GameObject.Instantiate(tower, (gameObject.transform.position + gameObject.transform.forward * 2.0f) + new Vector3(0, -1, 0), gameObject.transform.rotation) as GameObject;
+			copy.GetComponent<MeshFilter>().sharedMesh = gameObject.GetComponent<MeshCopier>().towerMesh;
 			spawns.Push(copy);
 		}
 

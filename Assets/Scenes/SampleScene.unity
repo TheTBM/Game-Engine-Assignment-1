@@ -305,6 +305,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumper: {fileID: 1461056391}
+--- !u!1 &239793573 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 17d8a11dfaada4a4eb67dc5079602e25,
+    type: 3}
+  m_PrefabInternal: {fileID: 1227885998}
+--- !u!33 &239793575
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 239793573}
+  m_Mesh: {fileID: 4300000, guid: 17d8a11dfaada4a4eb67dc5079602e25, type: 3}
 --- !u!1 &301581999
 GameObject:
   m_ObjectHideFlags: 0
@@ -935,6 +947,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1195874896 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100002, guid: ca07e38ad815de84daef3ccf09b41464,
+    type: 3}
+  m_PrefabInternal: {fileID: 487402758}
+--- !u!33 &1195874898
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1195874896}
+  m_Mesh: {fileID: 4300000, guid: ca07e38ad815de84daef3ccf09b41464, type: 3}
 --- !u!1001 &1227885998
 Prefab:
   m_ObjectHideFlags: 0
@@ -1041,6 +1065,7 @@ GameObject:
   - component: {fileID: 1296246182}
   - component: {fileID: 1296246183}
   - component: {fileID: 1296246185}
+  - component: {fileID: 1296246184}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -1147,6 +1172,25 @@ MonoBehaviour:
   rotationSpeed: 5
   player: {fileID: 1296246177}
   camera: {fileID: 534669904}
+--- !u!114 &1296246184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1296246177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fb6f010ba684c24cb6d2d2066d5e6d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  circleTree: {fileID: 1328189643}
+  tree: {fileID: 1195874896}
+  crystals: {fileID: 239793573}
+  tower: {fileID: 1504997975}
+  circleTreeMesh: {fileID: 0}
+  treeMesh: {fileID: 0}
+  crystalsMesh: {fileID: 0}
+  towerMesh: {fileID: 0}
 --- !u!114 &1296246185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1159,6 +1203,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1296246177}
+--- !u!1 &1328189643 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100002, guid: 0cd897a0ab6277d409abe2742f89af0e,
+    type: 3}
+  m_PrefabInternal: {fileID: 449834183}
+--- !u!33 &1328189645
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1328189643}
+  m_Mesh: {fileID: 4300000, guid: 0cd897a0ab6277d409abe2742f89af0e, type: 3}
 --- !u!1 &1413384248
 GameObject:
   m_ObjectHideFlags: 0
@@ -1411,6 +1467,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumper: {fileID: 981158701}
+--- !u!1 &1504997975 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100002, guid: 7cbb2cc65af89c146bf8a659cfbe680d,
+    type: 3}
+  m_PrefabInternal: {fileID: 1294662313}
+--- !u!33 &1504997977
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1504997975}
+  m_Mesh: {fileID: 4300000, guid: 7cbb2cc65af89c146bf8a659cfbe680d, type: 3}
 --- !u!1 &2022885173
 GameObject:
   m_ObjectHideFlags: 0

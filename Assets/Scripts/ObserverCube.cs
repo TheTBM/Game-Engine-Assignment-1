@@ -8,32 +8,7 @@ public class ObserverCube : MonoBehaviour
 	int index;
 	bool initiated = false;
 	
-	// Update is called once per frame
-	void Update ()
-	{
-		if (!initiated)
-		{
-			Init();
-		}
-
-		int.TryParse(gameObject.tag, out index);
-
-		if ((jumper.transform.position.y >= 2.0) && (gameObject.GetComponent<Rigidbody>().velocity.y == 0.0f))
-		{
-			ObserverPluginWrapper.Trigger(index);
-		}
-
-		if (ObserverPluginWrapper.GetTriggered(index, 0))
-		{
-			Rigidbody rigidbody = gameObject.GetComponent<Rigidbody>();
-
-			rigidbody.AddForce(new Vector3(0, 7.5f, 0), ForceMode.Impulse);
-
-			ObserverPluginWrapper.Untrigger(index);
-		}
-	}
-
-	void Init()
+	void Start()
 	{
 		int.TryParse(gameObject.tag, out index);
 
@@ -53,7 +28,25 @@ public class ObserverCube : MonoBehaviour
 			ObserverPluginWrapper.CreatePlayerJumpObserver(3);
 			ObserverPluginWrapper.CreatePlayerJumpObserver(4);
 		}
+	}
 
-		initiated = true;
+	// Update is called once per frame
+	void Update ()
+	{
+		int.TryParse(gameObject.tag, out index);
+
+		if ((jumper.transform.position.y >= 2.0) && (gameObject.GetComponent<Rigidbody>().velocity.y == 0.0f))
+		{
+			ObserverPluginWrapper.Trigger(index);
+		}
+
+		if (ObserverPluginWrapper.GetTriggered(index, 0))
+		{
+			Rigidbody rigidbody = gameObject.GetComponent<Rigidbody>();
+
+			rigidbody.AddForce(new Vector3(0, 7.5f, 0), ForceMode.Impulse);
+
+			ObserverPluginWrapper.Untrigger(index);
+		}
 	}
 }
