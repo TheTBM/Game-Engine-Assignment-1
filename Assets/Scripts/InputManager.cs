@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 //custom controller namespace
 using ControllerInputs;
+using UnityEngine.UI;
 
 //custom namespace for command design pattern
 namespace CommandPattern
@@ -12,7 +13,8 @@ namespace CommandPattern
 		//creates objects for each model
 		public GameObject player;
 
-		float cooldown = 0.2f;
+		static float maxCD = 0.25f;
+		float cooldown = maxCD;
 
 		bool remapping = false;
 		int buttonBeingRemapped;
@@ -46,6 +48,8 @@ namespace CommandPattern
 			Select = new RemapButton();
 			RightTrigger = new SpawnTower();
 			LeftTrigger = new SpawnCrystals();
+
+			inputs.Push(XButton);
 		}
 
 		// Update is called once per frame
@@ -78,6 +82,8 @@ namespace CommandPattern
 
 		public void HandleInputs()
 		{
+			GameObject.Find("Prompt").GetComponent<Text>().text = "";
+
 			//perform action linked to x button
 			if (ControllerPluginWrapper.GetButtonDown(0, 0))
 			{
@@ -86,7 +92,8 @@ namespace CommandPattern
 					inputs.Push(XButton);
 				}
 
-				cooldown = 0.2f;
+
+				cooldown = maxCD;
 				XButton.Execute(player, inputs.Peek());
 
 				if (XButton.getCommand() == "UndoButton")
@@ -97,6 +104,7 @@ namespace CommandPattern
 				else if (XButton.getCommand() == "RemapButton")
 				{
 					remapping = true;
+					ResetAllButtons();
 				}
 			}
 
@@ -108,7 +116,7 @@ namespace CommandPattern
 					inputs.Push(CircleButton);
 				}
 
-				cooldown = 0.2f;
+				cooldown = maxCD;
 				CircleButton.Execute(player, inputs.Peek());
 
 				if (CircleButton.getCommand() == "UndoButton")
@@ -119,6 +127,7 @@ namespace CommandPattern
 				else if (CircleButton.getCommand() == "RemapButton")
 				{
 					remapping = true;
+					ResetAllButtons();
 				}
 			}
 
@@ -130,7 +139,7 @@ namespace CommandPattern
 					inputs.Push(SquareButton);
 				}
 
-				cooldown = 0.2f;
+				cooldown = maxCD;
 				SquareButton.Execute(player, inputs.Peek());
 
 				if (SquareButton.getCommand() == "UndoButton")
@@ -141,6 +150,7 @@ namespace CommandPattern
 				else if (SquareButton.getCommand() == "RemapButton")
 				{
 					remapping = true;
+					ResetAllButtons();
 				}
 			}
 
@@ -152,7 +162,7 @@ namespace CommandPattern
 					inputs.Push(TriangleButton);
 				}
 
-				cooldown = 0.2f;
+				cooldown = maxCD;
 				TriangleButton.Execute(player, inputs.Peek());
 
 				if (TriangleButton.getCommand() == "UndoButton")
@@ -163,6 +173,7 @@ namespace CommandPattern
 				else if (TriangleButton.getCommand() == "RemapButton")
 				{
 					remapping = true;
+					ResetAllButtons();
 				}
 			}
 
@@ -174,7 +185,7 @@ namespace CommandPattern
 					inputs.Push(DPadUp);
 				}
 
-				cooldown = 0.2f;
+				cooldown = maxCD;
 				DPadUp.Execute(player, inputs.Peek());
 
 				if (DPadUp.getCommand() == "UndoButton")
@@ -185,6 +196,7 @@ namespace CommandPattern
 				else if (DPadUp.getCommand() == "RemapButton")
 				{
 					remapping = true;
+					ResetAllButtons();
 				}
 			}
 
@@ -196,7 +208,7 @@ namespace CommandPattern
 					inputs.Push(DPadDown);
 				}
 
-				cooldown = 0.2f;
+				cooldown = maxCD;
 				DPadDown.Execute(player, inputs.Peek());
 
 				if (DPadDown.getCommand() == "UndoButton")
@@ -207,6 +219,7 @@ namespace CommandPattern
 				else if (DPadDown.getCommand() == "RemapButton")
 				{
 					remapping = true;
+					ResetAllButtons();
 				}
 			}
 
@@ -218,7 +231,7 @@ namespace CommandPattern
 					inputs.Push(DPadLeft);
 				}
 
-				cooldown = 0.2f;
+				cooldown = maxCD;
 				DPadLeft.Execute(player, inputs.Peek());
 
 				if (DPadLeft.getCommand() == "UndoButton")
@@ -229,6 +242,7 @@ namespace CommandPattern
 				else if (DPadLeft.getCommand() == "RemapButton")
 				{
 					remapping = true;
+					ResetAllButtons();
 				}
 			}
 
@@ -240,7 +254,7 @@ namespace CommandPattern
 					inputs.Push(DPadRight);
 				}
 
-				cooldown = 0.2f;
+				cooldown = maxCD;
 				DPadRight.Execute(player, inputs.Peek());
 
 				if (DPadRight.getCommand() == "UndoButton")
@@ -251,6 +265,7 @@ namespace CommandPattern
 				else if (DPadRight.getCommand() == "RemapButton")
 				{
 					remapping = true;
+					ResetAllButtons();
 				}
 			}
 
@@ -262,7 +277,7 @@ namespace CommandPattern
 					inputs.Push(L1);
 				}
 
-				cooldown = 0.2f;
+				cooldown = maxCD;
 				L1.Execute(player, inputs.Peek());
 
 				if (L1.getCommand() == "UndoButton")
@@ -273,6 +288,7 @@ namespace CommandPattern
 				else if (L1.getCommand() == "RemapButton")
 				{
 					remapping = true;
+					ResetAllButtons();
 				}
 			}
 
@@ -284,7 +300,7 @@ namespace CommandPattern
 					inputs.Push(R1);
 				}
 
-				cooldown = 0.2f;
+				cooldown = maxCD;
 				R1.Execute(player, inputs.Peek());
 
 				if (R1.getCommand() == "UndoButton")
@@ -295,6 +311,7 @@ namespace CommandPattern
 				else if (R1.getCommand() == "RemapButton")
 				{
 					remapping = true;
+					ResetAllButtons();
 				}
 			}
 
@@ -306,7 +323,7 @@ namespace CommandPattern
 					inputs.Push(LStickPress);
 				}
 
-				cooldown = 0.2f;
+				cooldown = maxCD;
 				LStickPress.Execute(player, inputs.Peek());
 
 				if (LStickPress.getCommand() == "UndoButton")
@@ -317,6 +334,7 @@ namespace CommandPattern
 				else if (LStickPress.getCommand() == "RemapButton")
 				{
 					remapping = true;
+					ResetAllButtons();
 				}
 			}
 
@@ -328,7 +346,7 @@ namespace CommandPattern
 					inputs.Push(RStickPress);
 				}
 
-				cooldown = 0.2f;
+				cooldown = maxCD;
 				RStickPress.Execute(player, inputs.Peek());
 
 				if (RStickPress.getCommand() == "UndoButton")
@@ -339,6 +357,7 @@ namespace CommandPattern
 				else if (RStickPress.getCommand() == "RemapButton")
 				{
 					remapping = true;
+					ResetAllButtons();
 				}
 			}
 
@@ -350,7 +369,7 @@ namespace CommandPattern
 					inputs.Push(Pause);
 				}
 
-				cooldown = 0.2f;
+				cooldown = maxCD;
 				Pause.Execute(player, inputs.Peek());
 
 				if (Pause.getCommand() == "UndoButton")
@@ -361,6 +380,7 @@ namespace CommandPattern
 				else if (Pause.getCommand() == "RemapButton")
 				{
 					remapping = true;
+					ResetAllButtons();
 				}
 			}
 
@@ -372,7 +392,7 @@ namespace CommandPattern
 					inputs.Push(Select);
 				}
 
-				cooldown = 0.2f;
+				cooldown = maxCD;
 				Select.Execute(player, inputs.Peek());
 
 				if (Select.getCommand() == "UndoButton")
@@ -383,6 +403,7 @@ namespace CommandPattern
 				else if (Select.getCommand() == "RemapButton")
 				{
 					remapping = true;
+					ResetAllButtons();
 				}
 			}
 
@@ -394,7 +415,7 @@ namespace CommandPattern
 					inputs.Push(RightTrigger);
 				}
 
-				cooldown = 0.2f;
+				cooldown = maxCD;
 				RightTrigger.Execute(player, inputs.Peek());
 
 				if (RightTrigger.getCommand() == "UndoButton")
@@ -405,6 +426,7 @@ namespace CommandPattern
 				else if (RightTrigger.getCommand() == "RemapButton")
 				{
 					remapping = true;
+					ResetAllButtons();
 				}
 			}
 
@@ -416,7 +438,7 @@ namespace CommandPattern
 					inputs.Push(LeftTrigger);
 				}
 
-				cooldown = 0.2f;
+				cooldown = maxCD;
 				LeftTrigger.Execute(player, inputs.Peek());
 
 				if (LeftTrigger.getCommand() == "UndoButton")
@@ -427,6 +449,7 @@ namespace CommandPattern
 				else if (LeftTrigger.getCommand() == "RemapButton")
 				{
 					remapping = true;
+					ResetAllButtons();
 				}
 			}
 		}
@@ -455,6 +478,40 @@ namespace CommandPattern
 		//gets button pressed to change control commands
 		private void RemapButtons()
 		{
+			switch (buttonBeingRemapped)
+			{
+				case 0:
+					GameObject.Find("Prompt").GetComponent<Text>().text =
+						"Currently remapping jump command";
+					break;
+				case 1:
+					GameObject.Find("Prompt").GetComponent<Text>().text =
+						"Currently remapping spawn tree command";
+					break;
+				case 2:
+					GameObject.Find("Prompt").GetComponent<Text>().text =
+						"Currently remapping spawn spruce command";
+					break;
+				case 3:
+					GameObject.Find("Prompt").GetComponent<Text>().text =
+						"Currently remapping spawn crystals command";
+					break;
+				case 4:
+					GameObject.Find("Prompt").GetComponent<Text>().text =
+						"Currently remapping spawn tower command";
+					break;
+				case 5:
+					GameObject.Find("Prompt").GetComponent<Text>().text =
+						"Currently remapping undo command";
+					break;
+				case 6:
+					GameObject.Find("Prompt").GetComponent<Text>().text =
+						"Currently remapping command remapping command";
+					break;
+				default:
+					break;
+			}
+
 			if (getNextButtonPress() == XButton)
 			{
 				GiveCommand(ref XButton);
@@ -524,6 +581,16 @@ namespace CommandPattern
 			{
 				GiveCommand(ref Select);
 			}
+
+			if (getNextButtonPress() == LeftTrigger)
+			{
+				GiveCommand(ref LeftTrigger);
+			}
+
+			if (getNextButtonPress() == RightTrigger)
+			{
+				GiveCommand(ref RightTrigger);
+			}
 		}
 
 		//gives last button pressed new command
@@ -567,72 +634,98 @@ namespace CommandPattern
 		{
 			if (ControllerPluginWrapper.GetButtonDown(0, 0))
 			{
+				cooldown = maxCD;
 				return XButton;
 			}
 
 			else if (ControllerPluginWrapper.GetButtonDown(0, 1))
 			{
+				cooldown = maxCD;
 				return CircleButton;
 			}
 
 			else if (ControllerPluginWrapper.GetButtonDown(0, 2))
 			{
+				cooldown = maxCD;
 				return SquareButton;
 			}
 
 			else if (ControllerPluginWrapper.GetButtonDown(0, 3))
 			{
+				cooldown = maxCD;
 				return TriangleButton;
 			}
 
 			else if (ControllerPluginWrapper.GetButtonDown(0, 4))
 			{
+				cooldown = maxCD;
 				return DPadUp;
 			}
 
 			else if (ControllerPluginWrapper.GetButtonDown(0, 5))
 			{
+				cooldown = maxCD;
 				return DPadDown;
 			}
 
 			else if (ControllerPluginWrapper.GetButtonDown(0, 6))
 			{
+				cooldown = maxCD;
 				return DPadLeft;
 			}
 
 			else if (ControllerPluginWrapper.GetButtonDown(0, 7))
 			{
+				cooldown = maxCD;
 				return DPadRight;
 			}
 
 			else if (ControllerPluginWrapper.GetButtonDown(0, 8))
 			{
+				cooldown = maxCD;
 				return L1;
 			}
 
 			else if (ControllerPluginWrapper.GetButtonDown(0, 9))
 			{
+				cooldown = maxCD;
 				return R1;
 			}
 
 			else if (ControllerPluginWrapper.GetButtonDown(0, 10))
 			{
+				cooldown = maxCD;
 				return LStickPress;
 			}
 
 			else if (ControllerPluginWrapper.GetButtonDown(0, 11))
 			{
+				cooldown = maxCD;
 				return RStickPress;
 			}
 
 			else if (ControllerPluginWrapper.GetButtonDown(0, 12))
 			{
+				cooldown = maxCD;
 				return Pause;
 			}
 
 			else if (ControllerPluginWrapper.GetButtonDown(0, 13))
 			{
+				cooldown = maxCD;
 				return Select;
+			}
+
+			else if (ControllerPluginWrapper.LeftTrigger(0) > 0.9f)
+			{
+				cooldown = maxCD;
+				return LeftTrigger;
+			}
+
+			else if (ControllerPluginWrapper.RightTrigger(0) > 0.9f)
+			{
+				cooldown = maxCD;
+				return RightTrigger;
 			}
 
 			return Blank;

@@ -206,7 +206,7 @@ namespace CommandPattern
 		}
 	}
 	
-	//used for removing a command from buttons press
+	//used for undoing a player's action
 	public class UndoButton : Command
 	{
 		//take base class and overwrite function
